@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.gadgets_Repairing_Service.dao.CustomerDao">
+
+     <insert id="insert" keyColumn="customerID" keyProperty="customerID" useGeneratedKeys="true" >
+         Insert into Customers(FirstName, LastName, Phone, Email) values (#{firstName}, #{lastName}, #{phone}, #{email})
+     </insert>
+    <sql id="customerSelect">
+        Select
+        c.customerID as customer_id, c.FirstName as customer_firstName, c.LastName as customer_lastName, c.Phone as customer_phone, c.Email as customer_email,
+        g.GadgetID as gadget_id, g.GadgetName as gadget_name, g.Brand as gadget_brand, g.Model as gadget_model, g.PurchaseDate as gadget_purchaseDate,
+        from Customers c
+        inner join Gadgets  g on g.customerID = c.customerID
+    </sql>
+
+    <select id="getById" resultMap="CustomerResultMap">
+        <include refid="customerSelect"></include>
+        where c.CustomerID = #{customerID}
+    </select>
+
+    <select id="getByName" resultMap="CustomerResultMap">
+        <include refid="customerSelect"></include>
+       where c.FirstName = #{firstName}
+    </select>
+    
+    <update id="update">
+        Update Customers set FirstName =#{firstName}, LastName = #{lastName}, Phone = #{phone}, Email = #{email} where CustomerID = #{customerID}
+    </update>
+    
+    <delete id="deleteById">
+        Delete from Customers where CustomerID = #{customerID}
+    </delete>
+    <resultMap id="CustomerResultMap" type="com.solvd.gadgets_Repairing_Service.bin.Customer" autoMapping="false">
+        <id column="CustomerID" property="customerID"/>
+        <result column="FirstName" property="firstName"/>
+        <result column="LastName" property="lastName"/>
+        <result column="Phone" property="phone"/>
+        <result column="Email" property="email"/>
+        <collection property=""
+    </resultMap>
+</mapper>

@@ -1,0 +1,14 @@
+{
+  "Parts": [
+    {
+      "partID": 1,
+      "partName": "Motherboard",
+      "partCost": "99.99"
+    },
+    {
+      "partID": 1,
+      "partName": "Motherboard",
+      "partCost": "99.99"
+    }
+  ]
+}
