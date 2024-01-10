@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.solvd.gadgets_Repairing_Service.dao.CustomerDao">
+<mapper namespace="com.solvd.gadgets.dao.CustomerDao">
 
      <insert id="insert" keyColumn="customerID" keyProperty="customerID" useGeneratedKeys="true" >
          Insert into Customers(FirstName, LastName, Phone, Email) values (#{firstName}, #{lastName}, #{phone}, #{email})
@@ -33,12 +33,12 @@
     <delete id="deleteById">
         Delete from Customers where CustomerID = #{customerID}
     </delete>
-    <resultMap id="CustomerResultMap" type="com.solvd.gadgets_Repairing_Service.bin.Customer" autoMapping="false">
+    <resultMap id="CustomerResultMap" type="com.solvd.gadgets.bin.Customer" autoMapping="false">
         <id column="CustomerID" property="customerID"/>
         <result column="FirstName" property="firstName"/>
         <result column="LastName" property="lastName"/>
         <result column="Phone" property="phone"/>
         <result column="Email" property="email"/>
-        <collection property=""
+
     </resultMap>
 </mapper>
