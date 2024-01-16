@@ -1,14 +1,14 @@
-<company xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation = "company.xsd">
+<company xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="company.xsd">
     <technicians>
         <technician id="1">
-            <technicianID> 1 </technicianID>
+            <technicianID> 101 </technicianID>
             <firstName> Joan </firstName>
             <lastName> Allen </lastName>
             <Email> Joan_Allen@email.com </Email>
             <Phone> 1987654321 </Phone>
         </technician>
         <technician id="2">
-            <technicianID> 2 </technicianID>
+            <technicianID> 102 </technicianID>
             <firstName> Joana </firstName>
             <lastName> Albert </lastName>
             <Email> J_Albert@email.com </Email>

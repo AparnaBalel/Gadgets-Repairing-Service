@@ -4,7 +4,7 @@ import com.solvd.gadgets.bin.Customer;
 import com.solvd.gadgets.dao.CustomerDao;
 import com.solvd.gadgets.dao.impl.CustomerDaoImpl;
 import com.solvd.gadgets.service.CustomerService;
-import com.solvd.gadgets.service.impl.CustomerServiceImpl;
+import com.solvd.gadgets.service.jdbc.CustomerServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 public class JdbcConnection {

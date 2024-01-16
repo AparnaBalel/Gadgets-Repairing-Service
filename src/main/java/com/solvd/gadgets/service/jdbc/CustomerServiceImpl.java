@@ -1,4 +1,4 @@
-package com.solvd.gadgets.service.impl;
+package com.solvd.gadgets.service.jdbc;
 
 import com.solvd.gadgets.bin.Customer;
 import com.solvd.gadgets.dao.CustomerDao;
@@ -16,6 +16,7 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerDaoImpl customerDAO;
 
     public CustomerServiceImpl(CustomerDao customerDao) {
+
         this.customerDAO = new CustomerDaoImpl();
     }
     @Override

@@ -3,6 +3,8 @@ package com.solvd.gadgets.dao.impl;
 import com.solvd.gadgets.connection.ConnectionPool;
 import com.solvd.gadgets.bin.Customer;
 import com.solvd.gadgets.dao.CustomerDao;
+import com.solvd.gadgets.util.DomParser;
+import org.apache.logging.log4j.LogManager;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,20 +12,23 @@ import java.util.List;
 import java.util.Optional;
 
 public class CustomerDaoImpl implements CustomerDao {
-
+    private static final org.apache.logging.log4j.Logger LOGGER = LogManager.getLogger(CustomerDaoImpl.class);
   Connection connection = ConnectionPool.getConnection();
     Customer customer = new Customer();
     PreparedStatement preparedStatement;
     ResultSet resultSet;
-    String query;
+
 
     @Override
     public Optional<Customer> getById(long customerId)  {
-       query = "SELECT * FROM Customers WHERE CustomerID = ?";
-        try {
-            preparedStatement = connection.prepareStatement(query);
+        Connection connection = ConnectionPool.getConnection();
+        Customer customer = null;
+        ResultSet resultSet = null;
+        String query = "SELECT * FROM Customers WHERE CustomerID = ?";
+        try (PreparedStatement  preparedStatement = connection.prepareStatement(query)){
             preparedStatement.setLong(1,customerId);
             resultSet = preparedStatement.executeQuery();
+            customer = new Customer();
             if (resultSet.next()){
                 customer.setCustomerID(resultSet.getLong("CustomerID"));
                 customer.setFirstName(resultSet.getString("FirstName"));
@@ -32,13 +37,23 @@ public class CustomerDaoImpl implements CustomerDao {
                 customer.setEmail(resultSet.getString("Email"));
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            LOGGER.error("something went wrong");
+        }finally {
+            if (resultSet!= null){
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    resultSet = null;
+                }
+            }
+            ConnectionPool.releaseConnection(connection);
         }
-        return Optional.empty();
+        return Optional.of(customer);
     }
 
     @Override
     public Optional<Customer> getByName(String lastName) {
+
         return Optional.empty();
     }
 
@@ -80,7 +95,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public void update( Customer customerId) {
-        query = "UPDATE Customers SET FirstName = ?  WHERE CustomerID = ? ";
+        String query = "UPDATE Customers SET FirstName = ?  WHERE CustomerID = ? ";
         try {
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1,customer.getFirstName());
@@ -94,7 +109,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
     @Override
     public void deleteById(Long customerId) {
-        query = "DELETE FROM Customers WHERE CustomerID = ?";
+        String query = "DELETE FROM Customers WHERE CustomerID = ?";
         try{
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setLong(1, customerId);
@@ -107,7 +122,7 @@ public class CustomerDaoImpl implements CustomerDao {
     @Override
     public List<Customer> getAllCustomer() {
         List<Customer> customers = new ArrayList<>();
-        query = "SELECT * FROM Customers ";
+        String query = "SELECT * FROM Customers ";
         try {
             preparedStatement =connection.prepareStatement(query);
            resultSet = preparedStatement.executeQuery();

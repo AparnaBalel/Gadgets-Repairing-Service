@@ -1,5 +1,7 @@
 package com.solvd.gadgets.dao.impl;
 
-public class TechniciansDaoImpl {
+public class TechniciansDAOImpl {
+
+
 
 }

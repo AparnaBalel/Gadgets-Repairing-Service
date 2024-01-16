@@ -2,6 +2,8 @@ package com.solvd.gadgets.bin;
 
 import jakarta.xml.bind.annotation.XmlRootElement;
 
+import java.util.List;
+
 @XmlRootElement(name = "company")
 public class Technicians {
    // @XmlAttribute (name = "id")
@@ -10,6 +12,7 @@ public class Technicians {
     private String lastName;
     private String email;
     private long phoneNumber;
+
 
     public Technicians() {
     }
@@ -72,4 +75,9 @@ public class Technicians {
                 ", phoneNumber=" + phoneNumber +
                 '}';
     }
+
+    public List<Technicians> getTechnicianList() {
+        return null;
+    }
+
 }
