@@ -5,6 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d0fad1a-b03f-4f5f-89a0-503a610f450f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/gadgets/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/gadgets/service/GadgetsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/gadgets/service/PartsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/gadgets/service/TechniciansService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/gadgets/service/jdbc/GadgetsServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/gadgets/service/jdbc/TechniciansServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/gadgets/service/mybatis/CustomerServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/gadgets/service/mybatis/GadgetsServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/gadgets/service/mybatis/PartsServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/gadgets/service/mybatis/TechniciansServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/gadgets/util/DomParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/gadgets/util/JAXBParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/solvd/gadgets/util/Jackson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/gadgets/DomParser.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/gadgets/JdbcConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/gadgets/JdbcConnection.java" afterDir="false" />
@@ -13,7 +27,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/gadgets/dao/impl/TechniciansDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/gadgets/dao/impl/TechniciansDAOImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/gadgets/service/JsonParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/gadgets/service/JsonParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/gadgets/service/impl/CustomerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/gadgets/service/jdbc/CustomerServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/gadgets/service/impl/GadgetsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/solvd/gadgets/service/jdbc/GadgetsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/solvd/gadgets/service/impl/GadgetsServiceImpl.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/company.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/company.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
