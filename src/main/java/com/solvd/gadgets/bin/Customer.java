@@ -6,7 +6,6 @@ public class Customer {
     private String lastName;
     private long phone;
     private String email;
-
     public Customer() {
     }
     public Customer(long customerID, String firstName, String lastName, long phoneNumber, String email) {

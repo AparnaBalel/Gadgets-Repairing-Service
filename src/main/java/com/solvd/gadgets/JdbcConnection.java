@@ -1,8 +1,8 @@
 package com.solvd.gadgets;
 
 import com.solvd.gadgets.bin.Customer;
-import com.solvd.gadgets.dao.CustomerDao;
-import com.solvd.gadgets.dao.impl.CustomerDaoImpl;
+import com.solvd.gadgets.dao.CustomerDAO;
+import com.solvd.gadgets.dao.impl.jdbc.CustomerDAOImpl;
 import com.solvd.gadgets.service.CustomerService;
 import com.solvd.gadgets.service.jdbc.CustomerServiceImpl;
 import org.apache.logging.log4j.LogManager;
@@ -11,29 +11,23 @@ public class JdbcConnection {
     private static final Logger LOGGER = LogManager.getLogger(JdbcConnection.class);
 
             public static void main(String[] args) {
-                CustomerDao customerDao = new CustomerDaoImpl();
-
-                // Create a CustomerService instance
+                CustomerDAO customerDao = new CustomerDAOImpl();
                 CustomerService customerService = new CustomerServiceImpl(customerDao);
-
-                // Adding a customer
                 customerService.insertCustomer("John", "Doe", "john.doe@example.com", 1234567890L);
 
-                // Checking if an email already exists
                 String existingEmail = "john.doe@example.com";
                 if (customerDao.isEmailAlreadyExists(existingEmail)) {
-                    System.out.println("Email " + existingEmail + " already exists in the database.");
+                    LOGGER.info("Email " + existingEmail + " already exists in the database.");
                 } else {
-                    System.out.println("Email " + existingEmail + " does not exist in the database.");
+                    LOGGER.info("Email " + existingEmail + " does not exist in the database.");
                 }
 
-                // Retrieving a customer by email
                 String searchEmail = "john.doe@example.com";
                 Customer foundCustomer = customerDao.getCustomerByEmail(searchEmail);
                 if (foundCustomer != null) {
-                    System.out.println("Customer found: " + foundCustomer.getFirstName() + " " + foundCustomer.getLastName());
+                    LOGGER.info("Customer found: " + foundCustomer.getFirstName() + " " + foundCustomer.getLastName());
                 } else {
-                    System.out.println("Customer not found with email: " + searchEmail);
+                    LOGGER.info("Customer not found with email: " + searchEmail);
                 }
 
                 Customer newCustomer = new Customer();
@@ -46,8 +40,8 @@ public class JdbcConnection {
                 LOGGER.info("Customer ID: " + newCustomer.getCustomerID());
                 LOGGER.info("Customer Name: " + newCustomer.getFirstName());
 
-                CustomerDao customerDAO = new CustomerDaoImpl();
-                customerDAO.insert (newCustomer);
+                CustomerDAO customerDAO = new CustomerDAOImpl();
+                customerDAO.create (newCustomer);
 
                LOGGER.info( customerDAO.getById(1));
 

@@ -3,17 +3,14 @@ package com.solvd.gadgets.bin;
 import java.util.Date;
 
 public class RepairRequests {
-
     private long requestID;
     private long customerID;
     private long gadgetID;
     private String issueDescription;
     private long statusID;
     private Date requestDate;
-
     public RepairRequests() {
     }
-
     public RepairRequests(long requestID, long customerID, long gadgetID, String issueDescription, long statusID, Date requestDate) {
         this.requestID = requestID;
         this.customerID = customerID;

@@ -1,8 +1,8 @@
 package com.solvd.gadgets.service.jdbc;
 
 import com.solvd.gadgets.bin.Customer;
-import com.solvd.gadgets.dao.CustomerDao;
-import com.solvd.gadgets.dao.impl.CustomerDaoImpl;
+import com.solvd.gadgets.dao.CustomerDAO;
+import com.solvd.gadgets.dao.impl.jdbc.CustomerDAOImpl;
 import com.solvd.gadgets.service.CustomerService;
 
 import java.util.List;
@@ -13,11 +13,11 @@ public class CustomerServiceImpl implements CustomerService {
 
     private static final Logger LOGGER = Logger.getLogger(CustomerServiceImpl.class.getName());
 
-    private CustomerDaoImpl customerDAO;
+    private CustomerDAOImpl customerDAO;
 
-    public CustomerServiceImpl(CustomerDao customerDao) {
+    public CustomerServiceImpl(CustomerDAO customerDao) {
 
-        this.customerDAO = new CustomerDaoImpl();
+        this.customerDAO = new CustomerDAOImpl();
     }
     @Override
     public void insertCustomer(String firstName, String lastName, String Email, long Phone) {
@@ -46,7 +46,7 @@ public class CustomerServiceImpl implements CustomerService {
             newCustomer.setLastName(lastName);
             newCustomer.setEmail(Email);
             newCustomer.setPhone(Phone);
-            customerDAO.insert(newCustomer);
+            customerDAO.create(newCustomer);
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Error adding customer: " + e.getMessage(), e);
             throw new RuntimeException("Error adding customer. Please try again later.");
@@ -55,6 +55,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer getCustomerById(int customerId) {
+
+
         return null;
     }
 

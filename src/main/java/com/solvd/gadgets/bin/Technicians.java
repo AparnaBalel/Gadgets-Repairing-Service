@@ -12,11 +12,8 @@ public class Technicians {
     private String lastName;
     private String email;
     private long phoneNumber;
-
-
     public Technicians() {
     }
-
     public Technicians(long technicianID, String firstName, String lastName, String email, long phoneNumber) {
         this.technicianID = technicianID;
         this.firstName = firstName;
@@ -24,7 +21,6 @@ public class Technicians {
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
-
     public long getTechnicianID() {
         return technicianID;
     }
@@ -64,7 +60,6 @@ public class Technicians {
     public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
     @Override
     public String toString() {
         return "Technicians{" +
@@ -75,7 +70,6 @@ public class Technicians {
                 ", phoneNumber=" + phoneNumber +
                 '}';
     }
-
     public List<Technicians> getTechnicianList() {
         return null;
     }

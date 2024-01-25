@@ -5,15 +5,15 @@ import com.solvd.gadgets.bin.Customer;
 import java.util.List;
 import java.util.Optional;
 
-public interface CustomerDao {
+public interface CustomerDAO {
     Optional<Customer> getById(long customerId) ;
-    Optional<Customer> getByName(String lastName) ;
-    void insert(Customer customer);
+    void create(Customer customer);
     void update( Customer customerId);
-
-    void deleteById(Long customerId);
+    void deleteById(long customerId);
     List<Customer> getAllCustomer();
 
     boolean isEmailAlreadyExists(String Email);
     Customer getCustomerByEmail(String Email);
+
+
 }

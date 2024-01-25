@@ -1,14 +1,18 @@
 package com.solvd.gadgets.util;
 
+import com.solvd.gadgets.JdbcConnection;
 import com.solvd.gadgets.bin.Technicians;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Unmarshaller;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.util.List;
 
 public class JAXBParser {
+    private static final Logger LOGGER = LogManager.getLogger(JAXBParser.class);
 
     public void JAXBParser(){
 
@@ -22,12 +26,12 @@ public class JAXBParser {
             // Iterate through technicians
             for (Technicians technician : technicianList) {
                 // Print technician details
-                System.out.println("Technician ID: " + technician.getTechnicianID());
-                System.out.println("First Name: " + technician.getFirstName());
-                System.out.println("Last Name: " + technician.getLastName());
-                System.out.println("Email: " + technician.getEmail());
-                System.out.println("Phone: " + technician.getPhoneNumber());
-                System.out.println("--------------------------");
+                LOGGER.info("Technician ID: " + technician.getTechnicianID());
+                LOGGER.info("First Name: " + technician.getFirstName());
+                LOGGER.info("Last Name: " + technician.getLastName());
+                LOGGER.info("Email: " + technician.getEmail());
+                LOGGER.info("Phone: " + technician.getPhoneNumber());
+                LOGGER.info("--------------------------");
             }
 
         } catch (JAXBException e) {
