@@ -6,5 +6,5 @@ import com.solvd.gadgets.bin.RepairParts;
 public interface RepairPartsDAO {
     void create(RepairParts repairParts);
 
-    void deleteByID(RepairParts repairPartID);
+    void deleteByID(int repairPartID);
 }

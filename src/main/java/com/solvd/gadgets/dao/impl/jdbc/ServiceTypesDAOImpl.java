@@ -1,4 +1,16 @@
 package com.solvd.gadgets.dao.impl.jdbc;
 
-public class ServiceTypesDAOImpl {
+import com.solvd.gadgets.bin.ServiceTypes;
+import com.solvd.gadgets.dao.ServiceTypesDAO;
+
+public class ServiceTypesDAOImpl implements ServiceTypesDAO {
+    @Override
+    public void create(ServiceTypes serviceTypes) {
+
+    }
+
+    @Override
+    public void deleteByID(int serviceTypeID) {
+
+    }
 }

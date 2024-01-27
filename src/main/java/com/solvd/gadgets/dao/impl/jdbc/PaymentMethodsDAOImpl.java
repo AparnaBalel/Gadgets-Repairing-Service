@@ -1,4 +1,16 @@
 package com.solvd.gadgets.dao.impl.jdbc;
 
-public class PaymentMethodsDAOImpl {
+import com.solvd.gadgets.bin.PaymentMethods;
+import com.solvd.gadgets.dao.PaymentMethodsDAO;
+
+public class PaymentMethodsDAOImpl implements PaymentMethodsDAO {
+    @Override
+    public void create(PaymentMethods paymentMethods) {
+
+    }
+
+    @Override
+    public void deleteByID(int paymentMethodID) {
+
+    }
 }

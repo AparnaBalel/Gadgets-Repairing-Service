@@ -6,5 +6,5 @@ import com.solvd.gadgets.bin.ServiceTypes;
 public interface ServiceTypesDAO {
     void create(ServiceTypes serviceTypes);
 
-    void deleteByID(ServiceTypes serviceTypeID);
+    void deleteByID(int serviceTypeID);
 }

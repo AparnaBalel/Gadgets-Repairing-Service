@@ -1,5 +1,17 @@
 package com.solvd.gadgets.dao.impl.jdbc;
 
-public class RepairAssignmentsDAOImpl {
+import com.solvd.gadgets.bin.RepairAssignments;
+import com.solvd.gadgets.dao.RepairAssignmentsDAO;
 
+public class RepairAssignmentsDAOImpl implements RepairAssignmentsDAO {
+
+    @Override
+    public void create(RepairAssignments repairAssignments) {
+
+    }
+
+    @Override
+    public void deleteByID(int assignmentID) {
+
+    }
 }

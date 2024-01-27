@@ -6,5 +6,5 @@ import com.solvd.gadgets.bin.RepairRequests;
 public interface RepairRequestsDAO {
     void create(RepairRequests repairRequests);
 
-    void deleteByID(RepairRequests requestID);
+    void deleteByID(int requestID);
 }

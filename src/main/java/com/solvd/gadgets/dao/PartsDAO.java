@@ -5,5 +5,5 @@ import com.solvd.gadgets.bin.Parts;
 public interface PartsDAO {
     void create(Parts parts);
 
-    void deleteByID(Parts partID);
+    void deleteByID(int partID);
 }

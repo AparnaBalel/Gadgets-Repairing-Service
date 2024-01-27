@@ -1,4 +1,16 @@
 package com.solvd.gadgets.dao.impl.jdbc;
 
-public class ReviewsDAOImpl {
+import com.solvd.gadgets.bin.Reviews;
+import com.solvd.gadgets.dao.ReviewsDAO;
+
+public class ReviewsDAOImpl implements ReviewsDAO {
+    @Override
+    public void create(Reviews reviews) {
+
+    }
+
+    @Override
+    public void deleteByID(int reviewID) {
+
+    }
 }

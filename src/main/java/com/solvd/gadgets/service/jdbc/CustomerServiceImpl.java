@@ -6,6 +6,7 @@ import com.solvd.gadgets.dao.impl.jdbc.CustomerDAOImpl;
 import com.solvd.gadgets.service.CustomerService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -54,10 +55,9 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer getCustomerById(int customerId) {
+    public Optional<Customer> getCustomerById(int customerId) {
 
-
-        return null;
+        return customerDAO.getById(customerId);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void updateCustomer(int customerId, String newCustomerName) {
+    public void updateCustomer(int customerId) {
 
     }
 

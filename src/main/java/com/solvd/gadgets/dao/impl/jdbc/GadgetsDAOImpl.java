@@ -9,12 +9,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 public class GadgetsDAOImpl implements GadgetsDAO {
 
-
     @Override
-    public Gadgets getGadgetById(int gadgetId) {
+    public Optional<Gadgets> getGadgetById(int gadgetId) {
         try (Connection connection = ConnectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Gadgets WHERE gadget_id = ?")) {
             preparedStatement.setInt(1, gadgetId);
@@ -26,8 +26,9 @@ public class GadgetsDAOImpl implements GadgetsDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return Optional.empty();
     }
+
     @Override
     public List<Gadgets> getAllGadgets() {
         return null;
@@ -35,6 +36,16 @@ public class GadgetsDAOImpl implements GadgetsDAO {
 
     @Override
     public void create(Gadgets gadget) {
+
+    }
+
+    @Override
+    public void update(int gadgetId) {
+
+    }
+
+    @Override
+    public void delete(int gadgetId) {
 
     }
 

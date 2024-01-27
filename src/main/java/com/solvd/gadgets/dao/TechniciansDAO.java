@@ -6,5 +6,5 @@ import com.solvd.gadgets.bin.Technicians;
 public interface TechniciansDAO {
     void create(Technicians technicians);
 
-    void deleteByID(Technicians technicianID);
+    void deleteByID(int technicianID);
 }

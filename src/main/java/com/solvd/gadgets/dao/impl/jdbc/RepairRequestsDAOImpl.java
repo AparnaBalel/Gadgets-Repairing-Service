@@ -1,4 +1,16 @@
 package com.solvd.gadgets.dao.impl.jdbc;
 
-public class RepairRequestsDAOImpl {
+import com.solvd.gadgets.bin.RepairRequests;
+import com.solvd.gadgets.dao.RepairRequestsDAO;
+
+public class RepairRequestsDAOImpl  implements RepairRequestsDAO {
+    @Override
+    public void create(RepairRequests repairRequests) {
+
+    }
+
+    @Override
+    public void deleteByID(int requestID) {
+
+    }
 }

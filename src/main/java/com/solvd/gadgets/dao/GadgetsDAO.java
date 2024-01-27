@@ -1,13 +1,19 @@
 package com.solvd.gadgets.dao;
 
+
 import com.solvd.gadgets.bin.Gadgets;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface GadgetsDAO {
-    Gadgets getGadgetById(int gadgetId);
+    Optional<Gadgets> getGadgetById(int gadgetId) ;
     List<Gadgets> getAllGadgets();
     void create(Gadgets gadget);
     void update(int gadgetId);
     void delete(int gadgetId);
+
+    void update(Gadgets gadgetId);
+
+    void delete(Gadgets gadgetId);
 }

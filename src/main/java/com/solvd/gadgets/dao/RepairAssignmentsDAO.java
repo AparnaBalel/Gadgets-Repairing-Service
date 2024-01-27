@@ -6,5 +6,5 @@ import com.solvd.gadgets.bin.RepairAssignments;
 public interface RepairAssignmentsDAO {
     void create(RepairAssignments repairAssignments);
 
-    void deleteByID(RepairAssignments assignmentID);
+    void deleteByID(int assignmentID);
 }
