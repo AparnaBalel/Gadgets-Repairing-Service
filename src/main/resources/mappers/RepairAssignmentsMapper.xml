@@ -2,6 +2,21 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper>
+<mapper namespace="com.solvd.gadgets.dao.RepairAssignmentsDAO">
 
+    <insert id="create" keyColumn="Assignment_ID" keyProperty="assignmentID" useGeneratedKeys="true" >
+        Insert into Repair_Assignments (Assignment_ID, Request_ID, Technician_ID  ,AssignmentDate)
+        values (#{assignmentID}, #{requestId}, #{technicianID}, #{assignmentDate})
+    </insert>
+
+    <delete id="deleteByID">
+        Delete from Repair_Assignments where Assignment_ID = #{assignmentID};
+    </delete>
+
+    <resultMap id="RepairAssignmentsResultMap" type="com.solvd.gadgets.bin.RepairAssignments" autoMapping="false">
+        <id column="Assignment_ID" property="assignmentID"/>
+        <result column="Request_ID" property="requestId" />
+        <result column="Technician_ID" property="technicianID"/>
+        <result column="AssignmentDate" property="assignmentDate"/>
+    </resultMap>
 </mapper>

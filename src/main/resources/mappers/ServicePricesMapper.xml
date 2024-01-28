@@ -2,6 +2,20 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper>
+<mapper namespace="com.solvd.gadgets.dao.ServicePricesDAO">
 
+    <insert id="create" keyColumn="Service_Price_ID" keyProperty="servicePriceID" useGeneratedKeys="true" >
+        Insert into Service_Prices (Service_Price_ID, Service_Type_ID, Price )
+        values (#{servicePriceID}, #{serviceTypeID}, #{Price})
+    </insert>
+
+    <delete id="deleteByID">
+        Delete from Service_Prices where Service_Price_ID = #{servicePriceID};
+    </delete>
+
+    <resultMap id="ServicePricesResultMap" type="com.solvd.gadgets.bin.ServicePrices" autoMapping="false">
+        <id column="Service_Price_ID" property="servicePriceID"/>
+        <result column="Service_Type_ID" property="serviceTypeID"/>
+        <result column="Price" property="Price" />
+    </resultMap>
 </mapper>

@@ -2,6 +2,22 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper>
+<mapper namespace="com.solvd.gadgets.dao.ReviewsDAO">
 
+    <insert id="create" keyColumn="Review_ID" keyProperty="reviewID" useGeneratedKeys="true" >
+        Insert into Reviews (Review_ID, Request_ID, Rating, Comments, DATE)
+        values (#{reviewID}, #{requestID}, #{rating}, #{comments}, , #{reviewDate})
+    </insert>
+
+    <delete id="deleteByID">
+        Delete from Reviews where Review_ID = #{reviewID};
+    </delete>
+
+    <resultMap id="ReviewsResultMap" type="com.solvd.gadgets.bin.Reviews" autoMapping="false">
+        <id column="Review_ID" property="reviewID"/>
+        <result column="Request_ID" property="requestID"/>
+        <result column="Rating" property="rating"/>
+        <result column="Comments" property="comments"/>
+        <result column="DATE" property="reviewDate"/>
+    </resultMap>
 </mapper>

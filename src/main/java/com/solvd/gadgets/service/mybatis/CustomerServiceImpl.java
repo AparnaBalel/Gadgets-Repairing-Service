@@ -15,7 +15,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
     @Override
     public void insertCustomer(String firstName, String lastName, String Email, long Phone) {
-
+        Customer newCustomer = new Customer();
+        newCustomer.setFirstName(firstName);
+        newCustomer.setLastName(lastName);
+        newCustomer.setEmail(Email);
+        newCustomer.setPhone(Phone);
+        customerDAO.create( newCustomer);
     }
 
     @Override

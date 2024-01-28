@@ -2,6 +2,22 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper>
+<mapper namespace="com.solvd.gadgets.dao.TechniciansDAO">
 
+    <insert id="create" keyColumn="TechnicianID" keyProperty="technicianID" useGeneratedKeys="true" >
+        Insert into Technicians (TechnicianID, First_Name, Last_Name, Email, Phone)
+        values (#{technicianID}, #{firstName}, #{lastName}, #{email}, #{phoneNumber})
+    </insert>
+
+    <delete id="deleteByID">
+        Delete from Technicians where TechnicianID = #{technicianID};
+    </delete>
+
+    <resultMap id="TechniciansResultMap" type="com.solvd.gadgets.bin.Technicians" autoMapping="false">
+        <id column="TechnicianID" property="technicianID"/>
+        <result column="First_Name" property="firstName" />
+        <result column="Last_Name" property="lastName"/>
+        <result column="Email" property="email"/>
+        <result column="Phone" property="phoneNumber"/>
+    </resultMap>
 </mapper>

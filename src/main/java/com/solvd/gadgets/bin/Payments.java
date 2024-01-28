@@ -16,17 +16,15 @@ public class Payments {
     @XmlJavaTypeAdapter(MyAdapter.class)
     private Date paymentDate;
     private String paymentTime;
-    private long customerID;
     public Payments() {
     }
-    public Payments(long paymentID, long requestID, double amount, int paymentMethodId, Date paymentDate, String paymentTime, long customerID) {
+    public Payments(long paymentID, long requestID, double amount, int paymentMethodId, Date paymentDate, String paymentTime ) {
         this.paymentID = paymentID;
         this.requestID = requestID;
         this.amount = amount;
         this.paymentMethodId = paymentMethodId;
         this.paymentDate = paymentDate;
         this.paymentTime = paymentTime;
-        this.customerID = customerID;
     }
     public long getPaymentID() {
         return paymentID;
@@ -64,12 +62,6 @@ public class Payments {
     public void setPaymentTime(String paymentTime) {
         this.paymentTime = paymentTime;
     }
-    public long getCustomerID() {
-        return customerID;
-    }
-    public void setCustomerID(long customerID) {
-        this.customerID = customerID;
-    }
     @Override
     public String toString() {
         return "Payments{" +
@@ -79,7 +71,6 @@ public class Payments {
                 ", paymentMethodId=" + paymentMethodId +
                 ", paymentDate=" + paymentDate +
                 ", paymentTime='" + paymentTime + '\'' +
-                ", customerID=" + customerID +
                 '}';
     }
 }

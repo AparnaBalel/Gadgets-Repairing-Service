@@ -2,6 +2,19 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper>
+<mapper namespace="com.solvd.gadgets.dao.ServiceTypesDAO">
 
+    <insert id="create" keyColumn="Service_Type_ID" keyProperty="serviceTypeID" useGeneratedKeys="true" >
+        Insert into Service_Types (Service_Type_ID, Type_Name)
+        values (#{serviceTypeID}, #{typeName})
+    </insert>
+
+    <delete id="deleteByID">
+        Delete from Service_Types where Service_Type_ID = #{serviceTypeID};
+    </delete>
+
+    <resultMap id="ServiceTypesResultMap" type="com.solvd.gadgets.bin.ServiceTypes" autoMapping="false">
+        <id column="Service_Type_ID " property="serviceTypeID "/>
+        <result column="Type_Name " property="typeName " />
+    </resultMap>
 </mapper>

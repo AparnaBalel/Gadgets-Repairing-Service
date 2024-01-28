@@ -2,6 +2,23 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper>
+<mapper namespace="com.solvd.gadgets.dao.RepairRequestsDAO">
 
+    <insert id="create" keyColumn="Request_ID" keyProperty="requestID" useGeneratedKeys="true" >
+        Insert into Repair_Requests (Request_ID, Customer_ID, Gadget_ID, Issue_Description, Status_ID, RequestDate)
+        values (#{requestID}, #{customerID}, #{gadgetID}, #{issueDescription}, #{statusID}, #{requestDate})
+    </insert>
+
+    <delete id="deleteByID">
+        Delete from Repair_Requests where Request_ID = #{requestID};
+    </delete>
+
+    <resultMap id="RepairRequestsResultMap" type="com.solvd.gadgets.bin.RepairRequests" autoMapping="false">
+        <id column="Request_ID" property="requestID"/>
+        <result column="Customer_ID" property="customerID"/>
+        <result column="Gadget_ID" property="gadgetID"/>
+        <result column="Issue_Description" property="issueDescription"/>
+        <result column="Status_ID" property="statusID"/>
+        <result column="RequestDate" property="requestDate"/>
+    </resultMap>
 </mapper>

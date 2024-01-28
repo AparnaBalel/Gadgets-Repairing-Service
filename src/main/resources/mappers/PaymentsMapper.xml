@@ -2,6 +2,22 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper>
+<mapper namespace="com.solvd.gadgets.dao.PaymentsDAO">
 
+    <insert id="create" keyColumn="Payment_ID" keyProperty="paymentID" useGeneratedKeys="true" >
+        Insert into Payments (Payment_ID,Request_ID, Amount, Payment_Method_ID, Payment_Date, Payment_Time)
+        values (#{paymentID}, #{requestID}, #{amount}, #{paymentMethodId}, #{paymentDate}, #{paymentTime})
+    </insert>
+
+    <delete id="deleteByID">
+        Delete from Payments where Payment_ID = #{paymentID};
+    </delete>
+    <resultMap id="PaymentsResultMap" type="com.solvd.gadgets.bin.Payments" autoMapping="false">
+        <id column="Payment_ID" property="paymentID"/>
+        <result column="Request_ID" property="requestID" />
+        <result column="Amount" property="amount"/>
+        <result column="Payment_Method_ID" property="paymentMethodId"/>
+        <result column="Payment_Date" property="paymentDate"/>
+        <result column="Payment_Time" property="paymentTime"/>
+    </resultMap>
 </mapper>

@@ -5,7 +5,7 @@
 
 <mapper namespace="com.solvd.gadgets.dao.CustomerDAO">
 
-     <insert id="insert" keyColumn="customerID" keyProperty="customerID" useGeneratedKeys="true" >
+     <insert id="create" keyColumn="customerID" keyProperty="customerID" useGeneratedKeys="true" >
          Insert into Customers(FirstName, LastName, Phone, Email) values (#{firstName}, #{lastName}, #{phone}, #{email})
      </insert>
     <sql id="customerSelect">
@@ -17,12 +17,12 @@
     </sql>
 
     <select id="getById" resultMap="CustomerResultMap">
-        <include refid="customerSelect"></include>
+        <include refid="customerSelect"/>
         where c.CustomerID = #{customerID}
     </select>
 
     <select id="getByName" resultMap="CustomerResultMap">
-        <include refid="customerSelect"></include>
+        <include refid="customerSelect"/>
        where c.FirstName = #{firstName}
     </select>
     

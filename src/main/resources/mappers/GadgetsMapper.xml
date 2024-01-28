@@ -6,15 +6,22 @@
 <mapper namespace="com.solvd.gadgets.dao.GadgetsDAO">
 
     <select id="getGadgetById" resultMap="GadgetsResultMap">
-        Select   gadgetID, gadgetName, brand, model, purchaseDate, customerID from Gadgets where GadgetID = #{gadgetID}
+        Select   gadgetID, gadgetName, brand, model, purchaseDate from Gadgets where GadgetID = #{gadgetID}
     </select>
+    <insert id="create" keyColumn="GadgetID" keyProperty="gadgetID" useGeneratedKeys="true" >
+        Insert into Gadgets (GadgetID, GadgetName, Brand, Model, PurchaseDate)
+        values (#{gadgetID}, #{gadgetName}, #{brand}, #{model}, #{purchaseDate})
+    </insert>
+
+    <delete id="deleteByID">
+        Delete from Gadgets where GadgetID = #{gadgetID};
+    </delete>
     <resultMap id="GadgetsResultMap" type="com.solvd.gadgets.bin.Gadgets" autoMapping="false">
         <id column="GadgetID" property="gadgetID"/>
         <result column="GadgetName" property="gadgetName" />
         <result column="Brand" property="brand"/>
         <result column="Model" property="model"/>
         <result column="PurchaseDate" property="purchaseDate"/>
-
     </resultMap>
 
 </mapper>

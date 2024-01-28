@@ -2,6 +2,22 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper>
+<mapper namespace="com.solvd.gadgets.dao.PartsDAO">
 
+    <insert id="create" keyColumn="Part_ID" keyProperty="partID" useGeneratedKeys="true" >
+        Insert into Parts (Part_ID, Part_Name, Part_Cost)
+        values (#{partID}, #{partName}, #{partCost})
+    </insert>
+
+
+    <delete id="deleteByID">
+        Delete from Parts where Part_ID = #{partID};
+    </delete>
+
+    <resultMap id="PartsResultMap" type="com.solvd.gadgets.bin.Parts" autoMapping="false">
+        <id column="Part_ID" property="partID"/>
+        <result column="Part_Name" property="partName" />
+        <result column="Part_Cost" property="partCost" />
+        <collection property="List" resultMap="com.solvd.gadgets.dao.PartsDAO.PartsResultMap"/>
+    </resultMap>
 </mapper>

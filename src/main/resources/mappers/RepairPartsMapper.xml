@@ -2,6 +2,21 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper>
+<mapper namespace="com.solvd.gadgets.dao.RepairPartsDAO">
 
+    <insert id="create" keyColumn="Repair_Part_ID" keyProperty="repairPartID" useGeneratedKeys="true" >
+        Insert into Repair_Parts (Repair_Part_ID, Request_ID, Part_ID, Quantity )
+        values (#{repairPartID}, #{requestID}, #{partID},  #{quantity})
+    </insert>
+
+    <delete id="deleteByID">
+        Delete from Repair_Parts where Repair_Part_ID = #{repairPartID};
+    </delete>
+
+    <resultMap id="RepairPartsResultMap" type="com.solvd.gadgets.bin.RepairParts" autoMapping="false">
+        <id column="Repair_Part_ID" property="repairPartID"/>
+        <result column="Request_ID" property="requestID" />
+        <result column="Part_ID" property="partID"/>
+        <result column="Quantity" property="quantity"/>
+    </resultMap>
 </mapper>

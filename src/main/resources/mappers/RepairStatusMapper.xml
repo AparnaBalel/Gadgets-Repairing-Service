@@ -2,6 +2,19 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper>
+<mapper namespace="com.solvd.gadgets.dao.RepairStatusDAO">
 
+    <insert id="create" keyColumn="Status_ID" keyProperty="statusID" useGeneratedKeys="true" >
+        Insert into Repair_Status (Status_ID, Status_Name)
+        values (#{statusID}, #{statusName})
+    </insert>
+
+    <delete id="deleteByID">
+        Delete from Repair_Status where Status_ID = #{statusID};
+    </delete>
+
+    <resultMap id="RepairStatusResultMap" type="com.solvd.gadgets.bin.RepairStatus" autoMapping="false">
+        <id column="Status_ID" property="statusID"/>
+        <result column="Status_Name" property="statusName" />
+    </resultMap>
 </mapper>
