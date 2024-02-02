@@ -1,8 +1,8 @@
 package com.solvd.gadgets.bin;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.solvd.gadgets.MyAdapter;
-import com.solvd.gadgets.SecondAdapter;
+import com.solvd.gadgets.util.MyAdapter;
+import com.solvd.gadgets.util.SecondAdapter;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import java.util.Date;

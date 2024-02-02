@@ -7,8 +7,7 @@ public class RepairAssignments {
     private long requestId;
     private long technicianID;
     private Date assignmentDate;
-    public RepairAssignments() {
-    }
+
     public RepairAssignments(long assignmentID, long requestId, long technicianID, Date assignmentDate) {
         this.assignmentID = assignmentID;
         this.requestId = requestId;

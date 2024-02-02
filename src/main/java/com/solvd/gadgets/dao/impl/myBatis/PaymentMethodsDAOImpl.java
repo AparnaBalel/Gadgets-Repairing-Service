@@ -1,7 +1,7 @@
 package com.solvd.gadgets.dao.impl.myBatis;
 
 import com.solvd.gadgets.bin.PaymentMethods;
-import com.solvd.gadgets.dao.PaymentMethodsDAO;
+import com.solvd.gadgets.dao.daoInterfaces.PaymentMethodsDAO;
 import com.solvd.gadgets.util.myBatisConfig;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;

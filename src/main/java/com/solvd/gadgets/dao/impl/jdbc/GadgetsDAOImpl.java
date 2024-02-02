@@ -2,7 +2,7 @@ package com.solvd.gadgets.dao.impl.jdbc;
 
 import com.solvd.gadgets.bin.Gadgets;
 import com.solvd.gadgets.connection.ConnectionPool;
-import com.solvd.gadgets.dao.GadgetsDAO;
+import com.solvd.gadgets.dao.daoInterfaces.GadgetsDAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

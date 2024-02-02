@@ -1,4 +1,4 @@
-package com.solvd.gadgets.service;
+package com.solvd.gadgets.service.serviceInterfaces;
 
 public interface PartsService {
 

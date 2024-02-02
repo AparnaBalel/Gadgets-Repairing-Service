@@ -1,7 +1,7 @@
 package com.solvd.gadgets.dao.impl.jdbc;
 
 import com.solvd.gadgets.bin.Parts;
-import com.solvd.gadgets.dao.PartsDAO;
+import com.solvd.gadgets.dao.daoInterfaces.PartsDAO;
 
 public class PartsDAOImpl  implements PartsDAO {
     @Override

@@ -1,6 +1,5 @@
 package com.solvd.gadgets.util;
 
-import com.solvd.gadgets.JdbcConnection;
 import com.solvd.gadgets.bin.Technicians;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;

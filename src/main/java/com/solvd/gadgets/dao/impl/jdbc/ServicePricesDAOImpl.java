@@ -1,7 +1,7 @@
 package com.solvd.gadgets.dao.impl.jdbc;
 
 import com.solvd.gadgets.bin.ServicePrices;
-import com.solvd.gadgets.dao.ServicePricesDAO;
+import com.solvd.gadgets.dao.daoInterfaces.ServicePricesDAO;
 
 public class ServicePricesDAOImpl implements ServicePricesDAO {
     @Override

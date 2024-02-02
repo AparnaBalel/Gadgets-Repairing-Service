@@ -1,7 +1,7 @@
 package com.solvd.gadgets.dao.impl.myBatis;
 
 import com.solvd.gadgets.bin.ServicePrices;
-import com.solvd.gadgets.dao.ServicePricesDAO;
+import com.solvd.gadgets.dao.daoInterfaces.ServicePricesDAO;
 import com.solvd.gadgets.util.myBatisConfig;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;

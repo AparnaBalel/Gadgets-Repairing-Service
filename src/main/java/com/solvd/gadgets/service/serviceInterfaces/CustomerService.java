@@ -1,4 +1,4 @@
-package com.solvd.gadgets.service;
+package com.solvd.gadgets.service.serviceInterfaces;
 
 import com.solvd.gadgets.bin.Customer;
 
@@ -17,6 +17,5 @@ public interface CustomerService {
 
         void deleteCustomer(int customerId);
 
-        void createAndInsertCustomer(String customerName);
     }
 

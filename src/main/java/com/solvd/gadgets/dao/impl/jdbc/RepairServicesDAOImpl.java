@@ -1,7 +1,7 @@
 package com.solvd.gadgets.dao.impl.jdbc;
 
 import com.solvd.gadgets.bin.RepairServices;
-import com.solvd.gadgets.dao.RepairServicesDAO;
+import com.solvd.gadgets.dao.daoInterfaces.RepairServicesDAO;
 
 public class RepairServicesDAOImpl implements RepairServicesDAO {
 

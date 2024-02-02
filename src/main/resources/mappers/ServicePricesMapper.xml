@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.solvd.gadgets.dao.ServicePricesDAO">
+<mapper namespace="com.solvd.gadgets.dao.daoInterfaces.ServicePricesDAO">
 
     <insert id="create" keyColumn="Service_Price_ID" keyProperty="servicePriceID" useGeneratedKeys="true" >
         Insert into Service_Prices (Service_Price_ID, Service_Type_ID, Price )

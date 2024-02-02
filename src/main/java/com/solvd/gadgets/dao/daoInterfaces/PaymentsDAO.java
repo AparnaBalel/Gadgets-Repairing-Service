@@ -1,4 +1,4 @@
-package com.solvd.gadgets.dao;
+package com.solvd.gadgets.dao.daoInterfaces;
 
 
 import com.solvd.gadgets.bin.Payments;

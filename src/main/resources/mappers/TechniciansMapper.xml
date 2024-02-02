@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.solvd.gadgets.dao.TechniciansDAO">
+<mapper namespace="com.solvd.gadgets.dao.daoInterfaces.TechniciansDAO">
 
     <insert id="create" keyColumn="TechnicianID" keyProperty="technicianID" useGeneratedKeys="true" >
         Insert into Technicians (TechnicianID, First_Name, Last_Name, Email, Phone)

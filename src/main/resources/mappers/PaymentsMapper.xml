@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.solvd.gadgets.dao.PaymentsDAO">
+<mapper namespace="com.solvd.gadgets.dao.daoInterfaces.PaymentsDAO">
 
     <insert id="create" keyColumn="Payment_ID" keyProperty="paymentID" useGeneratedKeys="true" >
         Insert into Payments (Payment_ID,Request_ID, Amount, Payment_Method_ID, Payment_Date, Payment_Time)

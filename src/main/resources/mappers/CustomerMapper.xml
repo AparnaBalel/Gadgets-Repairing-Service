@@ -3,27 +3,23 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.solvd.gadgets.dao.CustomerDAO">
+<mapper namespace="com.solvd.gadgets.dao.daoInterfaces.CustomerDAO">
 
      <insert id="create" keyColumn="customerID" keyProperty="customerID" useGeneratedKeys="true" >
          Insert into Customers(FirstName, LastName, Phone, Email) values (#{firstName}, #{lastName}, #{phone}, #{email})
      </insert>
     <sql id="customerSelect">
-        Select
-        c.customerID as customer_id, c.FirstName as customer_firstName, c.LastName as customer_lastName, c.Phone as customer_phone, c.Email as customer_email,
-        g.GadgetID as gadget_id, g.GadgetName as gadget_name, g.Brand as gadget_brand, g.Model as gadget_model, g.PurchaseDate as gadget_purchaseDate,
-        from Customers c
-        inner join Gadgets  g on g.customerID = c.customerID
+        Select * from Customers
     </sql>
 
     <select id="getById" resultMap="CustomerResultMap">
         <include refid="customerSelect"/>
-        where c.CustomerID = #{customerID}
+        where CustomerID = #{customerID}
     </select>
 
     <select id="getByName" resultMap="CustomerResultMap">
         <include refid="customerSelect"/>
-       where c.FirstName = #{firstName}
+       where FirstName = #{firstName}
     </select>
     
     <update id="update">
@@ -33,12 +29,16 @@
     <delete id="deleteById">
         Delete from Customers where CustomerID = #{customerID}
     </delete>
+    <select id="getAllCustomer" resultMap="customerResultMap">
+        <include refid="customerSelect"/>
+        SELECT * FROM Customers
+    </select>
+
     <resultMap id="CustomerResultMap" type="com.solvd.gadgets.bin.Customer" autoMapping="false">
         <id column="CustomerID" property="customerID"/>
         <result column="FirstName" property="firstName"/>
         <result column="LastName" property="lastName"/>
         <result column="Phone" property="phone"/>
         <result column="Email" property="email"/>
-
     </resultMap>
 </mapper>

@@ -1,7 +1,11 @@
 package com.solvd.gadgets.bin;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlElementWrapper;
 import jakarta.xml.bind.annotation.XmlRootElement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @XmlRootElement(name = "company")
@@ -12,6 +16,20 @@ public class Technicians {
     private String lastName;
     private String email;
     private long phoneNumber;
+    private List<Technicians> technicianList;
+    @JsonProperty("technicians")
+
+
+    @XmlElementWrapper(name = "technicians")
+    @XmlElement(name = "technician")
+    public List<Technicians> getTechnicianList() {
+        return technicianList;
+    }
+
+    public void setTechnicianList(List<Technicians> technicianList) {
+        this.technicianList = technicianList;
+    }
+
     public Technicians() {
     }
     public Technicians(long technicianID, String firstName, String lastName, String email, long phoneNumber) {
@@ -70,8 +88,6 @@ public class Technicians {
                 ", phoneNumber=" + phoneNumber +
                 '}';
     }
-    public List<Technicians> getTechnicianList() {
-        return null;
-    }
+
 
 }

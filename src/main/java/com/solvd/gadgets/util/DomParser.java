@@ -1,6 +1,5 @@
 package com.solvd.gadgets.util;
 
-import com.solvd.gadgets.JdbcConnection;
 import org.apache.logging.log4j.LogManager;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -22,10 +21,10 @@ public class DomParser {
              DocumentBuilder builder  =  factory.newDocumentBuilder();
              Document document =  builder.parse(filePath);
              document.getDocumentElement().normalize();
-             NodeList techniciansList = document.getElementsByTagName(tagName);
+             NodeList List = document.getElementsByTagName(tagName);
 
-             for (int i = 0; i < techniciansList.getLength(); i++) {
-                 Node node = techniciansList.item(i);
+             for (int i = 0; i < List.getLength(); i++) {
+                 Node node = List.item(i);
 
                  if (node.getNodeType() == Node.ELEMENT_NODE) {
                      Element element = (Element) node;

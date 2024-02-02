@@ -2,7 +2,7 @@ package com.solvd.gadgets.dao.impl.myBatis;
 
 
 import com.solvd.gadgets.bin.Gadgets;
-import com.solvd.gadgets.dao.GadgetsDAO;
+import com.solvd.gadgets.dao.daoInterfaces.GadgetsDAO;
 import com.solvd.gadgets.util.myBatisConfig;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;

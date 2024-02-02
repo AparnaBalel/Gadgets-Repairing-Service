@@ -1,7 +1,7 @@
 package com.solvd.gadgets.dao.impl.jdbc;
 
 import com.solvd.gadgets.bin.Payments;
-import com.solvd.gadgets.dao.PaymentsDAO;
+import com.solvd.gadgets.dao.daoInterfaces.PaymentsDAO;
 
 public class PaymentsDAOImpl implements PaymentsDAO {
     @Override

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.solvd.gadgets.dao.RepairStatusDAO">
+<mapper namespace="com.solvd.gadgets.dao.daoInterfaces.RepairStatusDAO">
 
     <insert id="create" keyColumn="Status_ID" keyProperty="statusID" useGeneratedKeys="true" >
         Insert into Repair_Status (Status_ID, Status_Name)

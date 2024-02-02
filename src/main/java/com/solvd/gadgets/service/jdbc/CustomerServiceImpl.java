@@ -1,9 +1,9 @@
 package com.solvd.gadgets.service.jdbc;
 
 import com.solvd.gadgets.bin.Customer;
-import com.solvd.gadgets.dao.CustomerDAO;
+import com.solvd.gadgets.dao.daoInterfaces.CustomerDAO;
 import com.solvd.gadgets.dao.impl.jdbc.CustomerDAOImpl;
-import com.solvd.gadgets.service.CustomerService;
+import com.solvd.gadgets.service.serviceInterfaces.CustomerService;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +16,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     private CustomerDAOImpl customerDAO;
 
-    public CustomerServiceImpl(CustomerDAO customerDao) {
+    public CustomerServiceImpl(CustomerDAO customerDAO) {
 
         this.customerDAO = new CustomerDAOImpl();
     }
@@ -26,11 +26,9 @@ public class CustomerServiceImpl implements CustomerService {
             if (firstName != null && firstName.matches(".*\\d.*")) {
                 throw new IllegalArgumentException("First name cannot contain numbers.");
             }
-
             if (lastName != null && lastName.matches(".*\\d.*")) {
                 throw new IllegalArgumentException("Last name cannot contain numbers.");
             }
-
             if (Email == null || !Email.contains("@") || !Email.endsWith(".com")) {
                 throw new IllegalArgumentException("Invalid customer email format.");
             }
@@ -39,15 +37,17 @@ public class CustomerServiceImpl implements CustomerService {
                 throw new IllegalArgumentException("Invalid customer phone number. It should be exactly 10 digits.");
             }
 
-            if (customerDAO.isEmailAlreadyExists(Email)) {
-                throw new IllegalArgumentException("A customer with the same email already exists.");
-            }
             Customer newCustomer = new Customer();
             newCustomer.setFirstName(firstName);
             newCustomer.setLastName(lastName);
             newCustomer.setEmail(Email);
             newCustomer.setPhone(Phone);
             customerDAO.create(newCustomer);
+            LOGGER.info("New Customer Details:"+ "\n" +
+            "Customer ID: " + newCustomer.getCustomerID() + "\n"+
+            "Customer Name: " + newCustomer.getFirstName() + " " + newCustomer.getLastName() + "\n"+
+            "Customer Email: " + newCustomer.getEmail() + "\n"+
+            "Customer Phone: " + newCustomer.getPhone());
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Error adding customer: " + e.getMessage(), e);
             throw new RuntimeException("Error adding customer. Please try again later.");
@@ -62,21 +62,24 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<Customer> getAllCustomers() {
-        return null;
+        List<Customer> customers = customerDAO.getAllCustomer();
+        for (Customer customer : customers) {
+            LOGGER.info("Customer ID: " + customer.getCustomerID() + "\n"+
+            "Customer Name: " + customer.getFirstName() + " " + customer.getLastName() + "\n"+
+            "Customer Email: " + customer.getEmail() + "\n"+
+            "Customer Phone: " + customer.getPhone());
+        }
+        return customers;
     }
 
     @Override
     public void updateCustomer(int customerId) {
-
+              customerDAO.update(customerId);
     }
 
     @Override
     public void deleteCustomer(int customerId) {
-
+          customerDAO.deleteById(customerId);
     }
 
-    @Override
-    public void createAndInsertCustomer(String customerName) {
-
-    }
 }

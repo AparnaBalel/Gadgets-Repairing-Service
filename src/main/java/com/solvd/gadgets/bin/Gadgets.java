@@ -55,4 +55,17 @@ public class Gadgets {
     public void setPurchaseDate(Date purchaseDate) {
         this.purchaseDate = purchaseDate;
     }
+
+    @Override
+    public String toString() {
+        return "Gadgets" + "\n"
+                + gadgetID + "\n"
+                + gadgetName + "\n"
+                +   brand + "\n"
+                + model + "\n"
+                + purchaseDate
+                + customerID ;
+
+    }
 }
+

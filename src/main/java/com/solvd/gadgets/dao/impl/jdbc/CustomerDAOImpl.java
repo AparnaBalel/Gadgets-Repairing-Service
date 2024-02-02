@@ -2,8 +2,7 @@ package com.solvd.gadgets.dao.impl.jdbc;
 
 import com.solvd.gadgets.connection.ConnectionPool;
 import com.solvd.gadgets.bin.Customer;
-import com.solvd.gadgets.dao.CustomerDAO;
-import org.apache.ibatis.session.SqlSession;
+import com.solvd.gadgets.dao.daoInterfaces.CustomerDAO;
 import org.apache.logging.log4j.LogManager;
 
 import java.sql.*;
@@ -14,25 +13,19 @@ import java.util.Optional;
 public class CustomerDAOImpl implements CustomerDAO {
     private static final org.apache.logging.log4j.Logger LOGGER = LogManager.getLogger(CustomerDAOImpl.class);
 
-    @Override
-    public Optional<Customer> getById(long customerId) {
+    public Optional<Customer> getById1(int customerId) {
         Connection connection = ConnectionPool.getConnection();
         Customer customer = null;
         ResultSet resultSet = null;
         String query = "SELECT * FROM Customers WHERE CustomerID = ?";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setLong(1, customerId);
             resultSet = preparedStatement.executeQuery();
-            customer = new Customer();
-            if (resultSet.next()) {
-                customer.setCustomerID(resultSet.getLong("CustomerID"));
-                customer.setFirstName(resultSet.getString("FirstName"));
-                customer.setLastName(resultSet.getString("LastName"));
-                customer.setPhone(resultSet.getLong("Phone"));
-                customer.setEmail(resultSet.getString("Email"));
             }
-        } catch (SQLException e) {
-            LOGGER.error("something went wrong can't create new customer");
+         catch (SQLException e) {
+            LOGGER.error("something went wrong can't get customer");
         } finally {
             if (resultSet != null) {
                 try {
@@ -44,6 +37,39 @@ public class CustomerDAOImpl implements CustomerDAO {
             ConnectionPool.releaseConnection(connection);
         }
         return Optional.of(customer);
+    }
+    public Optional<Customer> getById(int customerId) {
+        Connection connection = ConnectionPool.getConnection();
+        Customer customer = null;
+        ResultSet resultSet = null;
+        String query = "SELECT * FROM Customers WHERE CustomerID = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setLong(1, customerId);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                customer = new Customer();
+                customer.setCustomerID(resultSet.getLong("CustomerID"));
+                customer.setFirstName(resultSet.getString("FirstName"));
+                customer.setLastName(resultSet.getString("LastName"));
+                customer.setPhone(resultSet.getLong("Phone"));
+                customer.setEmail(resultSet.getString("Email"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            ConnectionPool.releaseConnection(connection);
+        }
+
+        return Optional.ofNullable(customer);
     }
 
     private static final List<Customer> customers = new ArrayList<>();
@@ -61,30 +87,17 @@ public class CustomerDAOImpl implements CustomerDAO {
             preparedStatement.executeUpdate();
             resultSet = preparedStatement.getGeneratedKeys();
             if (resultSet.next()) {
-                customer.setCustomerID(resultSet.getLong(1));
+                customer.setCustomerID(resultSet.getLong(100));
             }
         } catch (SQLException e) {
-            LOGGER.error("something went wrong");
+            LOGGER.error("something went wrong in customerDAO class");
         } finally {
             ConnectionPool.releaseConnection(connection);
         }
     }
 
     @Override
-    public boolean isEmailAlreadyExists(String Email) {
-        return customers.stream().anyMatch(customer -> customer.getEmail().equals(Email));
-    }
-
-    @Override
-    public Customer getCustomerByEmail(String customerEmail) {
-        return customers.stream()
-                .filter(customer -> customer.getEmail().equals(customerEmail))
-                .findFirst()
-                .orElse(null);
-    }
-
-    @Override
-    public void update(Customer customerId) {
+    public void update(int customerId) {
         Connection connection = ConnectionPool.getConnection();
         Customer customer = null;
         ResultSet resultSet = null;
@@ -101,7 +114,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public void deleteById(long customerId) {
+    public void deleteById(int customerId) {
         Connection connection = ConnectionPool.getConnection();
         ResultSet resultSet = null;
         String query = "DELETE FROM Customers WHERE CustomerID = ?";
@@ -116,35 +129,34 @@ public class CustomerDAOImpl implements CustomerDAO {
 
     @Override
     public List<Customer> getAllCustomer() {
-        List<Customer> customers = new ArrayList<>();
         Connection connection = ConnectionPool.getConnection();
-        Customer customer = null;
+        List<Customer> customers = new ArrayList<>();
         ResultSet resultSet = null;
-        String query = "SELECT * FROM Customers ";
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
+        try (PreparedStatement preparedStatement = connection.prepareStatement("select * from Customers")) {
             resultSet = preparedStatement.executeQuery();
-
             while (resultSet.next()) {
-                customer.setCustomerID(resultSet.getLong("customer id"));
-                customer.setFirstName(resultSet.getString("firstName"));
-                customer.setLastName(resultSet.getString("lastName"));
-                customer.setPhone(resultSet.getLong("phoneNumber"));
-                customer.setEmail(resultSet.getString("emailID"));
+                Customer customer = new Customer();
+                customer.setCustomerID(resultSet.getLong("CustomerID"));
+                customer.setFirstName(resultSet.getString("FirstName"));
+                customer.setLastName(resultSet.getString("LastName"));
+                customer.setPhone(resultSet.getLong("Phone"));
+                customer.setEmail(resultSet.getString("Email"));
                 customers.add(customer);
+
             }
         } catch (SQLException e) {
-            LOGGER.error("something went wrong");
+            e.printStackTrace();
         } finally {
             if (resultSet != null) {
                 try {
                     resultSet.close();
                 } catch (SQLException e) {
-                    resultSet = null;
+                    e.printStackTrace();
                 }
             }
             ConnectionPool.releaseConnection(connection);
         }
+
         return customers;
     }
 }

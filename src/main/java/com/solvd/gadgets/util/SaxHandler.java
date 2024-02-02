@@ -1,4 +1,4 @@
-package com.solvd.gadgets;
+package com.solvd.gadgets.util;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;

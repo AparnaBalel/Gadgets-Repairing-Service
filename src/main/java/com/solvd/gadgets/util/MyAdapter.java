@@ -1,4 +1,4 @@
-package com.solvd.gadgets;
+package com.solvd.gadgets.util;
 
 import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 

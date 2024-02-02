@@ -3,8 +3,6 @@ package com.solvd.gadgets.bin;
 public class PaymentMethods {
     private long paymentMethodID;
     private String methodName;
-    public PaymentMethods() {
-    }
     public PaymentMethods(long paymentMethodID, String methodName) {
         this.paymentMethodID = paymentMethodID;
         this.methodName = methodName;
