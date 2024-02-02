@@ -19,6 +19,11 @@ public class CustomerServiceImpl implements CustomerService {
 
         this.customerDAO = new CustomerDAOImpl();
     }
+
+    public CustomerServiceImpl() {
+
+    }
+
     @Override
     public void insertCustomer(String firstName, String lastName, String Email, long Phone) {
         try {

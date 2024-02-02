@@ -22,10 +22,9 @@ public class Jackson {
 
             if (allParts != null) {
                 for (Parts part : allParts) {
-                    LOGGER.info("Part ID: " + part.getPartID());
-                    LOGGER.info("Part Name: " + part.getPartName());
-                    LOGGER.info("Part Cost: " + part.getPartCost());
-                    LOGGER.info("");
+                    LOGGER.info("\n" + "Part ID: " +" "+ part.getPartID() +"\n"
+                    + "Part Name: " + part.getPartName() +"\n "
+                    + "Part Cost: " + part.getPartCost());
                 }
             } else {
                 LOGGER.info("No parts found.");

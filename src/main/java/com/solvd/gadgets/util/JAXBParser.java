@@ -25,12 +25,10 @@ public class JAXBParser {
             // Iterate through technicians
             for (Technicians technician : technicianList) {
                 // Print technician details
-                LOGGER.info("Technician ID: " + technician.getTechnicianID());
-                LOGGER.info("First Name: " + technician.getFirstName());
-                LOGGER.info("Last Name: " + technician.getLastName());
-                LOGGER.info("Email: " + technician.getEmail());
-                LOGGER.info("Phone: " + technician.getPhoneNumber());
-                LOGGER.info("--------------------------");
+                LOGGER.info("\n" + "Technician ID: " + " " +technician.getTechnicianID() +"\n"
+                + "Technician Name: " + technician.getFirstName() + technician.getLastName() +"\n"
+                + "Email: " + technician.getEmail() +"\n"
+                + "Phone: " + technician.getPhoneNumber() +"\n ");
             }
 
         } catch (JAXBException e) {

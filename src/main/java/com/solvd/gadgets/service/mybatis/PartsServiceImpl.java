@@ -13,7 +13,6 @@ public class PartsServiceImpl implements PartsService {
 
     }
 
-
     @Override
     public void parsingParts() {
         Jackson jackson = new Jackson();

@@ -25,16 +25,16 @@ public class Main {
         PartsService partsService = new PartsServiceImpl(partsDAO);
         CustomerDAO customerDao = new CustomerDAOImpl();
         CustomerService customerService = new CustomerServiceImpl(customerDao);
-       // customerService.insertCustomer("Jonathan", "Doe", "johnathan.doe@example.com", 1234567890L);
+       customerService.insertCustomer("Jonathan", "doe", "johnathan.doe@example.com", 1234567890L);
 
-        customerService.getAllCustomers();
+       // customerService.getAllCustomers();
 
 
-        LOGGER.info( customerService.getCustomerById(6));
+        //LOGGER.info( customerService.getCustomerById(6));
 
-        technician.parsingTechnician();
+       // technician.parsingTechnician();
 
-       partsService.parsingParts();
+       //partsService.parsingParts();
 
     }
 
