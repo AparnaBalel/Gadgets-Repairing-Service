@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Auth Suite" verbose="1" parallel="tests" thread-count="3">
+
+    
+    <listeners>
+        <listener class-name="com.solvd.gadgets.listeners.TestNGListener"/>
+    </listeners>
+
+    <test name="Customers Test Cases" parallel="methods" thread-count="5">
+        <classes>
+            <class name="com.solvd.gadgets.CustomersTestCases"/>
+        </classes>
+    </test>
+    <test name="Parts Test Cases"  parallel="methods" thread-count="5">
+        <classes>
+            <class name="com.solvd.gadgets.PartsTestCases"/>
+        </classes>
+    </test>
+    <test name="Technicians Test Cases"  parallel="methods" thread-count="5">
+        <classes>
+            <class name="com.solvd.gadgets.TechniciansTestCases"/>
+        </classes>
+    </test>
+</suite>

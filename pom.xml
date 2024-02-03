@@ -9,6 +9,10 @@
     <version>1.0-SNAPSHOT</version>
     <properties>
         <log4jVersion>2.21.1</log4jVersion>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <suite>  </suite>
     </properties>
 
     <dependencies>
@@ -95,8 +99,18 @@
                     <target>11</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+                <configuration>
+                    <suiteXmlFiles> ${project.build.directory}/test-classes/testng_suites/${suite}.xml</suiteXmlFiles>
+                </configuration>
+            </plugin>
 
         </plugins>
 
     </build>
+
+
 </project>
