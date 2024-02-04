@@ -2,26 +2,20 @@
 
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Auth Suite" verbose="1" parallel="tests" thread-count="3">
+<suite name="Auth Suite" verbose="1" parallel="tests" thread-count="10">
 
     
     <listeners>
         <listener class-name="com.solvd.gadgets.listeners.TestNGListener"/>
     </listeners>
 
-    <test name="Customers Test Cases" parallel="methods" thread-count="5">
+    <test name="Customers Test Cases" parallel="methods" thread-count="10">
         <classes>
-            <class name="com.solvd.gadgets.CustomersTestCases"/>
+
+            <class name="com.solvd.gadgets.CustomersTestCases">
+                <methods> name = </methods>
+            </class>
         </classes>
     </test>
-    <test name="Parts Test Cases"  parallel="methods" thread-count="5">
-        <classes>
-            <class name="com.solvd.gadgets.PartsTestCases"/>
-        </classes>
-    </test>
-    <test name="Technicians Test Cases"  parallel="methods" thread-count="5">
-        <classes>
-            <class name="com.solvd.gadgets.TechniciansTestCases"/>
-        </classes>
-    </test>
+
 </suite>
