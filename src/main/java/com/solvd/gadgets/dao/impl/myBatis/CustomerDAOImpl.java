@@ -7,8 +7,6 @@ import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,19 +42,37 @@ public class CustomerDAOImpl implements CustomerDAO {
 
     @Override
     public void update(int customerId) {
-        try (SqlSession sqlSession = myBatisConfig.getSessionFactory().openSession(true)) {
+        SqlSession sqlSession = null;
+
+        try {
+                sqlSession = myBatisConfig.getSessionFactory().openSession(true);
             CustomerDAO customerDao = sqlSession.getMapper(CustomerDAO.class);
             customerDao.update(customerId);
             sqlSession.commit();
+        }
+        catch (PersistenceException e) {
+            LOGGER.error("something went wrong can't update customer mybatis");
+            sqlSession.rollback();
+        } finally {
+            sqlSession.close();
         }
     }
 
     @Override
     public void deleteById(int customerId) {
-        try (SqlSession sqlSession = myBatisConfig.getSessionFactory().openSession(true)) {
+        SqlSession sqlSession = null;
+
+        try {
+            sqlSession = myBatisConfig.getSessionFactory().openSession(true);
             CustomerDAO customerDao = sqlSession.getMapper(CustomerDAO.class);
             customerDao.deleteById(customerId);
             sqlSession.commit();
+        }
+        catch (PersistenceException e) {
+            LOGGER.error("something went wrong can't delete customer by id");
+            sqlSession.rollback();
+        } finally {
+            sqlSession.close();
         }
     }
 

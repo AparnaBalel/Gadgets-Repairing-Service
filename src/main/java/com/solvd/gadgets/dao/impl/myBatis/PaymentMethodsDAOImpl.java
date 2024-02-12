@@ -17,7 +17,6 @@ public class PaymentMethodsDAOImpl implements PaymentMethodsDAO {
             PaymentMethodsDAO paymentMethodsDAO =  sqlSession.getMapper(PaymentMethodsDAO.class);
             paymentMethodsDAO.create(paymentMethods);
             sqlSession.commit();
-
         } catch (PersistenceException e) {
             LOGGER.error("something went wrong can't create new paymentMethods");
             sqlSession.rollback();
@@ -29,6 +28,18 @@ public class PaymentMethodsDAOImpl implements PaymentMethodsDAO {
 
     @Override
     public void deleteByID(int paymentMethodID) {
-
+        SqlSession sqlSession = null;
+        try {
+            sqlSession = myBatisConfig.getSessionFactory().openSession(true);
+            PaymentMethodsDAO paymentMethodsDAO =  sqlSession.getMapper(PaymentMethodsDAO.class);
+            paymentMethodsDAO.deleteByID(paymentMethodID);
+            sqlSession.commit();
+        }
+        catch (PersistenceException e) {
+            LOGGER.error("something went wrong can't delete payment method by id");
+            sqlSession.rollback();
+        } finally {
+            sqlSession.close();
+        }
     }
 }

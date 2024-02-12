@@ -29,6 +29,19 @@ public class PaymentsDAOImpl implements PaymentsDAO {
 
     @Override
     public void delete(int paymentID) {
+        SqlSession sqlSession = null;
 
+        try {
+            sqlSession = myBatisConfig.getSessionFactory().openSession(true);
+            PaymentsDAO paymentsDAO =  sqlSession.getMapper(PaymentsDAO.class);
+            paymentsDAO.delete(paymentID);
+            sqlSession.commit();
+        }
+        catch (PersistenceException e) {
+            LOGGER.error("something went wrong can't delete payment by id");
+            sqlSession.rollback();
+        } finally {
+            sqlSession.close();
+        }
     }
 }

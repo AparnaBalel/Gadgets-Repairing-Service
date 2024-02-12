@@ -1,6 +1,7 @@
 package com.solvd.gadgets.dao.impl.myBatis;
 
 import com.solvd.gadgets.bin.Technicians;
+import com.solvd.gadgets.dao.daoInterfaces.CustomerDAO;
 import com.solvd.gadgets.dao.daoInterfaces.TechniciansDAO;
 import com.solvd.gadgets.util.myBatisConfig;
 import org.apache.ibatis.exceptions.PersistenceException;
@@ -31,6 +32,19 @@ public class TechniciansDAOImpl implements TechniciansDAO {
 
     @Override
     public void deleteByID(int technicianID) {
+        SqlSession sqlSession = null;
 
+        try {
+            sqlSession = myBatisConfig.getSessionFactory().openSession(true);
+            TechniciansDAO techniciansDAO =  sqlSession.getMapper(TechniciansDAO.class);
+            techniciansDAO.deleteByID(technicianID);
+            sqlSession.commit();
+        }
+        catch (PersistenceException e) {
+            LOGGER.error("something went wrong can't delete customer by id");
+            sqlSession.rollback();
+        } finally {
+            sqlSession.close();
+        }
     }
 }

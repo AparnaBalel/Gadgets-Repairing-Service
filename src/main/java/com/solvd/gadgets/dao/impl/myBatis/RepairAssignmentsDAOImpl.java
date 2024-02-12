@@ -29,6 +29,20 @@ public class RepairAssignmentsDAOImpl implements RepairAssignmentsDAO {
 
     @Override
     public void deleteByID(int assignmentID) {
+        SqlSession sqlSession = null;
+
+        try {
+            sqlSession = myBatisConfig.getSessionFactory().openSession(true);
+            RepairAssignmentsDAO repairAssignmentsDAO =  sqlSession.getMapper(RepairAssignmentsDAO.class);
+            repairAssignmentsDAO.deleteByID(assignmentID);
+            sqlSession.commit();
+        }
+        catch (PersistenceException e) {
+            LOGGER.error("something went wrong can't delete repair assignment  by id");
+            sqlSession.rollback();
+        } finally {
+            sqlSession.close();
+        }
 
     }
 }

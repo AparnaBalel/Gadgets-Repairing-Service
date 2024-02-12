@@ -5,20 +5,22 @@ import com.solvd.gadgets.util.MyAdapter;
 import com.solvd.gadgets.util.SecondAdapter;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Payments {
     private long paymentID;
-    private long requestID;
+    private RepairRequests requestID;
     private double amount;
-    private int paymentMethodId;
+    private PaymentMethods paymentMethodId;
     @JsonDeserialize(using = SecondAdapter.class)
     @XmlJavaTypeAdapter(MyAdapter.class)
     private Date paymentDate;
-    private String paymentTime;
+    private Date paymentTime;
     public Payments() {
     }
-    public Payments(long paymentID, long requestID, double amount, int paymentMethodId, Date paymentDate, String paymentTime ) {
+
+    public Payments(long paymentID, RepairRequests requestID, double amount, PaymentMethods paymentMethodId, Date paymentDate, Date paymentTime) {
         this.paymentID = paymentID;
         this.requestID = requestID;
         this.amount = amount;
@@ -26,17 +28,12 @@ public class Payments {
         this.paymentDate = paymentDate;
         this.paymentTime = paymentTime;
     }
+
     public long getPaymentID() {
         return paymentID;
     }
     public void setPaymentID(long paymentID) {
         this.paymentID = paymentID;
-    }
-    public long getRequestID() {
-        return requestID;
-    }
-    public void setRequestID(long requestID) {
-        this.requestID = requestID;
     }
     public double getAmount() {
         return amount;
@@ -44,24 +41,39 @@ public class Payments {
     public void setAmount(double amount) {
         this.amount = amount;
     }
-    public int getPaymentMethodId() {
+
+    public RepairRequests getRequestID() {
+        return requestID;
+    }
+
+    public void setRequestID(RepairRequests requestID) {
+        this.requestID = requestID;
+    }
+
+    public PaymentMethods getPaymentMethodId() {
         return paymentMethodId;
     }
-    public void setPaymentMethodId(int paymentMethodId) {
+
+    public void setPaymentMethodId(PaymentMethods paymentMethodId) {
         this.paymentMethodId = paymentMethodId;
     }
+
     public Date getPaymentDate() {
         return paymentDate;
     }
+
     public void setPaymentDate(Date paymentDate) {
         this.paymentDate = paymentDate;
     }
-    public String getPaymentTime() {
+
+    public Date getPaymentTime() {
         return paymentTime;
     }
-    public void setPaymentTime(String paymentTime) {
+
+    public void setPaymentTime(Date paymentTime) {
         this.paymentTime = paymentTime;
     }
+
     @Override
     public String toString() {
         return "Payments{" +
@@ -70,7 +82,7 @@ public class Payments {
                 ", amount=" + amount +
                 ", paymentMethodId=" + paymentMethodId +
                 ", paymentDate=" + paymentDate +
-                ", paymentTime='" + paymentTime + '\'' +
+                ", paymentTime=" + paymentTime +
                 '}';
     }
 }

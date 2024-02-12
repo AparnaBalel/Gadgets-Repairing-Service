@@ -1,6 +1,7 @@
 package com.solvd.gadgets.dao.impl.myBatis;
 
 import com.solvd.gadgets.bin.ServiceTypes;
+import com.solvd.gadgets.dao.daoInterfaces.CustomerDAO;
 import com.solvd.gadgets.dao.daoInterfaces.ServiceTypesDAO;
 import com.solvd.gadgets.util.myBatisConfig;
 import org.apache.ibatis.exceptions.PersistenceException;
@@ -30,6 +31,19 @@ public class ServiceTypesDAOImpl implements ServiceTypesDAO {
 
     @Override
     public void deleteByID(int serviceTypeID) {
+        SqlSession sqlSession = null;
 
+        try {
+            sqlSession = myBatisConfig.getSessionFactory().openSession(true);
+            ServiceTypesDAO serviceTypesDAO =  sqlSession.getMapper(ServiceTypesDAO.class);
+            serviceTypesDAO.deleteByID(serviceTypeID);
+            sqlSession.commit();
+        }
+        catch (PersistenceException e) {
+            LOGGER.error("something went wrong can't delete service type by id");
+            sqlSession.rollback();
+        } finally {
+            sqlSession.close();
+        }
     }
 }

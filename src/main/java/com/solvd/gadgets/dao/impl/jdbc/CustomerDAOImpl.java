@@ -4,50 +4,25 @@ import com.solvd.gadgets.connection.ConnectionPool;
 import com.solvd.gadgets.bin.Customer;
 import com.solvd.gadgets.dao.daoInterfaces.CustomerDAO;
 import org.apache.logging.log4j.LogManager;
-
+import org.apache.logging.log4j.Logger;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class CustomerDAOImpl implements CustomerDAO {
-    private static final org.apache.logging.log4j.Logger LOGGER = LogManager.getLogger(CustomerDAOImpl.class);
+    private static final Logger LOGGER = LogManager.getLogger(CustomerDAOImpl.class);
 
-    public Optional<Customer> getById1(int customerId) {
-        Connection connection = ConnectionPool.getConnection();
-        Customer customer = null;
-        ResultSet resultSet = null;
-        String query = "SELECT * FROM Customers WHERE CustomerID = ?";
-
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setLong(1, customerId);
-            resultSet = preparedStatement.executeQuery();
-            }
-         catch (SQLException e) {
-            LOGGER.error("something went wrong can't get customer");
-        } finally {
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    resultSet = null;
-                }
-            }
-            ConnectionPool.releaseConnection(connection);
-        }
-        return Optional.of(customer);
-    }
+    @Override
     public Optional<Customer> getById(int customerId) {
         Connection connection = ConnectionPool.getConnection();
         Customer customer = null;
         ResultSet resultSet = null;
         String query = "SELECT * FROM Customers WHERE CustomerID = ?";
-
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setLong(1, customerId);
             resultSet = preparedStatement.executeQuery();
-
             if (resultSet.next()) {
                 customer = new Customer();
                 customer.setCustomerID(resultSet.getLong("CustomerID"));
@@ -68,11 +43,8 @@ public class CustomerDAOImpl implements CustomerDAO {
             }
             ConnectionPool.releaseConnection(connection);
         }
-
         return Optional.ofNullable(customer);
     }
-
-    private static final List<Customer> customers = new ArrayList<>();
 
     @Override
     public void create(Customer customer) {
@@ -100,16 +72,16 @@ public class CustomerDAOImpl implements CustomerDAO {
     public void update(int customerId) {
         Connection connection = ConnectionPool.getConnection();
         Customer customer = null;
-        ResultSet resultSet = null;
         String query = "UPDATE Customers SET FirstName = ?  WHERE CustomerID = ? ";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, customer.getFirstName());
             preparedStatement.setLong(2, customer.getCustomerID());
             preparedStatement.executeUpdate();
-
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error("something went wrong can't update customer by id");
+        } finally {
+            ConnectionPool.releaseConnection(connection);
         }
     }
 

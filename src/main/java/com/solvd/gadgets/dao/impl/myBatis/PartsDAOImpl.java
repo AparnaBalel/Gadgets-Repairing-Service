@@ -31,6 +31,19 @@ public class PartsDAOImpl implements PartsDAO {
 
     @Override
     public void deleteByID(int partID) {
+        SqlSession sqlSession = null;
 
+        try {
+            sqlSession = myBatisConfig.getSessionFactory().openSession(true);
+            PartsDAO partsDAO =  sqlSession.getMapper(PartsDAO.class);
+            partsDAO.deleteByID(partID);
+            sqlSession.commit();
+        }
+        catch (PersistenceException e) {
+            LOGGER.error("something went wrong can't delete part by id");
+            sqlSession.rollback();
+        } finally {
+            sqlSession.close();
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.solvd.gadgets.dao.impl.myBatis;
 
 import com.solvd.gadgets.bin.ServicePrices;
+import com.solvd.gadgets.dao.daoInterfaces.CustomerDAO;
 import com.solvd.gadgets.dao.daoInterfaces.ServicePricesDAO;
 import com.solvd.gadgets.util.myBatisConfig;
 import org.apache.ibatis.exceptions.PersistenceException;
@@ -17,7 +18,6 @@ public class ServicePricesDAOImpl implements ServicePricesDAO {
             ServicePricesDAO servicePricesDAO =  sqlSession.getMapper(ServicePricesDAO.class);
             servicePricesDAO.create(servicePrices);
             sqlSession.commit();
-
         } catch (PersistenceException e) {
             LOGGER.error("something went wrong can't create new servicePrice");
             sqlSession.rollback();
@@ -29,6 +29,19 @@ public class ServicePricesDAOImpl implements ServicePricesDAO {
 
     @Override
     public void deleteByID(int servicePriceID) {
+        SqlSession sqlSession = null;
 
+        try {
+            sqlSession = myBatisConfig.getSessionFactory().openSession(true);
+            ServicePricesDAO servicePricesDAO =  sqlSession.getMapper(ServicePricesDAO.class);
+            servicePricesDAO.deleteByID(servicePriceID);
+            sqlSession.commit();
+        }
+        catch (PersistenceException e) {
+            LOGGER.error("something went wrong can't delete service price by id");
+            sqlSession.rollback();
+        } finally {
+            sqlSession.close();
+        }
     }
 }

@@ -15,7 +15,7 @@ public class TechniciansServiceImpl implements TechniciansService {
 
     private TechniciansDAOImpl techniciansDAO;
 
-    public TechniciansServiceImpl(TechniciansDAOImpl techniciansDAO) {
+    public TechniciansServiceImpl() {
         this.techniciansDAO = techniciansDAO;
     }
 

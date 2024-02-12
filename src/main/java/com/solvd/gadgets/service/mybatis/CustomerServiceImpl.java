@@ -15,14 +15,11 @@ public class CustomerServiceImpl implements CustomerService {
 
     private CustomerDAOImpl customerDAO;
 
-    public CustomerServiceImpl(CustomerDAO customerDao) {
+    public CustomerServiceImpl() {
 
         this.customerDAO = new CustomerDAOImpl();
     }
 
-    public CustomerServiceImpl() {
-
-    }
 
     @Override
     public void insertCustomer(String firstName, String lastName, String Email, long Phone) {

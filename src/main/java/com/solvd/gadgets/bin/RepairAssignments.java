@@ -14,7 +14,7 @@ public class RepairAssignments {
         this.technicianID = technicianID;
         this.assignmentDate = assignmentDate;
     }
-    public long getAssignmentID() {
+    public long getAssignmentID(long aLong) {
         return assignmentID;
     }
     public void setAssignmentID(long assignmentID) {

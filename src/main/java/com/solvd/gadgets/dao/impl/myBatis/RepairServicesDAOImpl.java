@@ -1,6 +1,7 @@
 package com.solvd.gadgets.dao.impl.myBatis;
 
 import com.solvd.gadgets.bin.RepairServices;
+import com.solvd.gadgets.dao.daoInterfaces.CustomerDAO;
 import com.solvd.gadgets.dao.daoInterfaces.RepairServicesDAO;
 import com.solvd.gadgets.util.myBatisConfig;
 import org.apache.ibatis.exceptions.PersistenceException;
@@ -29,6 +30,19 @@ public class RepairServicesDAOImpl implements RepairServicesDAO {
 
     @Override
     public void deleteByID(int repairServiceID) {
+        SqlSession sqlSession = null;
 
+        try {
+            sqlSession = myBatisConfig.getSessionFactory().openSession(true);
+            RepairServicesDAO repairServicesDAO =  sqlSession.getMapper(RepairServicesDAO.class);
+            repairServicesDAO.deleteByID(repairServiceID);
+            sqlSession.commit();
+        }
+        catch (PersistenceException e) {
+            LOGGER.error("something went wrong can't delete repair serive by id");
+            sqlSession.rollback();
+        } finally {
+            sqlSession.close();
+        }
     }
 }

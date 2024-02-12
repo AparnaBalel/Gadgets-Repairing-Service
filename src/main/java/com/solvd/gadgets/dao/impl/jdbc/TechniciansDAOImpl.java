@@ -44,7 +44,9 @@ public class TechniciansDAOImpl implements TechniciansDAO {
             preparedStatement.setLong(1, technicianID);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error("something went wrong, can't create new technician");
+        } finally {
+            ConnectionPool.releaseConnection(connection);
         }
 
     }

@@ -17,9 +17,6 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerDAOImpl customerDAO;
 
     public CustomerServiceImpl() {
-    }
-
-    public CustomerServiceImpl(CustomerDAO customerDAO) {
 
         this.customerDAO = new CustomerDAOImpl();
     }

@@ -1,6 +1,5 @@
 package com.solvd.gadgets.dao.impl.myBatis;
 
-
 import com.solvd.gadgets.bin.RepairParts;
 import com.solvd.gadgets.dao.daoInterfaces.RepairPartsDAO;
 import com.solvd.gadgets.util.myBatisConfig;
@@ -11,7 +10,6 @@ import org.apache.logging.log4j.Logger;
 
 public class RepairPartsDAOImpl implements RepairPartsDAO {
     private static final Logger LOGGER = LogManager.getLogger(RepairPartsDAOImpl.class);
-
     @Override
     public void create(RepairParts repairParts) {
         SqlSession sqlSession = myBatisConfig.getSessionFactory().openSession(true);
@@ -31,6 +29,18 @@ public class RepairPartsDAOImpl implements RepairPartsDAO {
 
     @Override
     public void deleteByID(int repairPartID) {
-
+        SqlSession sqlSession = null;
+        try {
+            sqlSession = myBatisConfig.getSessionFactory().openSession(true);
+            RepairPartsDAO repairPartsDAO =  sqlSession.getMapper(RepairPartsDAO.class);
+            repairPartsDAO.deleteByID(repairPartID);
+            sqlSession.commit();
+        }
+        catch (PersistenceException e) {
+            LOGGER.error("something went wrong can't delete repair part by id");
+            sqlSession.rollback();
+        } finally {
+            sqlSession.close();
+        }
     }
 }
